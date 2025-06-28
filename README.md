@@ -28,6 +28,7 @@
 ```bash
     npm install
 ```
+
 4. Set Up Environment
 - Copy the .env.example file to .env:
 
@@ -37,4 +38,9 @@
 - Generate an application key:
 ```bash
     php artisan key:generate
+```
+
+- Generate JWT token secret
+```bash
+    php artisan jwt:secret
 ```

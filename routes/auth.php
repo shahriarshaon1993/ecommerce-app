@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\ClientController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('client/login', [AuthenticatedSessionController::class, 'create'])
+        ->name('client.login');
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -14,13 +17,10 @@ Route::middleware('guest')->group(function () {
     Route::get('login', [ClientController::class, 'redirectTo'])
         ->name('login');
 
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
     Route::get('client/callback', [ClientController::class, 'handleCallback'])
         ->name('client.callback');
-
-    // Route::get('login', [AuthenticatedSessionController::class, 'create'])
-    //     ->name('login');
-
-    // Route::post('login', [AuthenticatedSessionController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
